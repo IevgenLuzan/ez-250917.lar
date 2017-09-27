@@ -1,6 +1,8 @@
+
 @extends('layouts.app')
 
 @section('content')
+
 <!-- Bootstrap шаблон... -->
 
 <div class="panel-body">
@@ -31,9 +33,7 @@
     </form>
 </div>
 
-<!-- Форма создания задачи... -->
-
-<!-- Текущие задачи -->
+<!-- TODO: Текущие задачи -->
 @if (count($tasks) > 0)
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -57,24 +57,24 @@
                     <td class="table-text">
                         <div>{{ $task->name }}</div>
                     </td>
-
                     <td>
                         <form action="{{ url('task/'.$task->id) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
 
-                            <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
-                                <i class="fa fa-btn fa-trash"></i>Удалить
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-trash"></i> Удалить
                             </button>
                         </form>
                     </td>
-                     <td>
-                        <form action="{{ url('task/'.$task->id) }}" method="GET">
-                               <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-warning">
-                                <i class="fa fa-btn fa-trash"></i>Изменить
+                    <td>
+                        <form action="{{ url("/task/edit/".$task->id) }}" method="GET">
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fa fa-trash"></i> Изменить
                             </button>
                         </form>
                     </td>
+                 
                 </tr>
                 @endforeach
             </tbody>
@@ -83,4 +83,3 @@
 </div>
 @endif
 @endsection
-
